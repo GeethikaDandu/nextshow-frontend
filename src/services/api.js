@@ -1,6 +1,13 @@
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "/api";
+const configuredApiBase = (import.meta.env.VITE_API_BASE_URL || "")
+  .trim()
+  .replace(/\/+$/, "");
 
+const API_BASE_URL = import.meta.env.PROD
+  ? `${configuredApiBase || "https://nextshow-backend.onrender.com"}${
+      configuredApiBase.endsWith("/api") ? "" : "/api"
+    }`
+  : "/api";
 async function apiFetch(endpoint, options = {}) {
   const token = localStorage.getItem("nextshow_token");
 
