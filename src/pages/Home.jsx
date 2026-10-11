@@ -270,8 +270,9 @@ const [goldReward, setGoldReward] = useState(false);
     setSeatsLoading(true);
     try {
       const token = localStorage.getItem("nextshow_token");
-      const response = await fetch(`/api/show-seats/show/${show.id}`, {
-        headers: token ? { Authorization: `Bearer ${token}` } : {},
+const response = await fetch(
+  `${import.meta.env.PROD ? "https://nextshow-backend.onrender.com/api" : "/api"}/show-seats/show/${show.id}`,
+  {        headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
       const raw = await response.json().catch(() => []);
       if (!response.ok) {

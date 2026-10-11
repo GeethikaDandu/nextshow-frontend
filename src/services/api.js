@@ -62,3 +62,6 @@ export function registerUser(userData) {
     body: JSON.stringify(userData),
   });
 }
+export function getShowSeats(showId) {
+  return apiFetch(`/show-seats/show/${showId}`);
+}
