@@ -16,7 +16,9 @@ export default function MyRewards({ onBack }) {
       try {
         const token = localStorage.getItem("nextshow_token");
 
-        const response = await fetch("/api/rewards/me", {
+        const response = await fetch(
+  `${import.meta.env.PROD ? "https://nextshow-backend.onrender.com/api" : "/api"}/rewards/me`,
+  {
           headers: {
             Authorization: `Bearer ${token}`,
           },
