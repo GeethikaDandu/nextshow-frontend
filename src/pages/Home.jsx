@@ -340,7 +340,9 @@ async function handleCreateBooking() {
       throw new Error("Please log in again before booking.");
     }
 
-    const response = await fetch("/api/bookings", {
+ const response = await fetch(
+  `${import.meta.env.PROD ? "https://nextshow-backend.onrender.com/api" : "/api"}/bookings`,
+  {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
